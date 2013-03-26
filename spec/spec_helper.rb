@@ -1,6 +1,6 @@
 require 'spork'
 #uncomment the following line to use spork with the debugger
-#require 'spork/ext/ruby-debug'
+require 'spork/ext/ruby-debug'
 # --- Instructions ---
 # Sort the contents of this file into a Spork.prefork and a Spork.each_run
 # block.
@@ -44,6 +44,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'capybara/rspec'
   require 'ffaker'
+  require 'factory_girl'
   
   # Requires supporting ruby files with custom matchers and macros, etc,
   # in spec/support/ and its subdirectories.
@@ -54,6 +55,8 @@ Spork.prefork do
   require 'spree/core/testing_support/controller_requests'
   require 'spree/core/testing_support/authorization_helpers'
   require 'spree/core/url_helpers'
+
+  Dir[File.join(File.dirname(__FILE__), 'factories/*.rb')].each { |f| require f }
   
   RSpec.configure do |config|
     config.include FactoryGirl::Syntax::Methods
