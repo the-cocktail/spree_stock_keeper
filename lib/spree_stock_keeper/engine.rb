@@ -1,4 +1,3 @@
-module Spree::StockKeeper; end
 module SpreeStockKeeper
   class Engine < Rails::Engine
     engine_name 'spree_stock_keeper'
