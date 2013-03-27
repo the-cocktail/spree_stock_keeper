@@ -1,4 +1,4 @@
-SpreeStockKeeper: Temporary inventory items reservation
+SpreeStockKeeper: Temporary inventory items reservation [![Build Status](https://travis-ci.org/nando/spree_stock_keeper.png?branch=master)](https://travis-ci.org/nando/spree_stock_keeper)
 
 Spree Stock Keeper will make temporary stock reservation with each cart addition. By default, Spree's inventory levels (Spree::Variant#on_hand) are decremented when order payment is successfully completed. This extension makes temporary reservations when items are added to the cart.
 
