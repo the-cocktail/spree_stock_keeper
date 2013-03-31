@@ -10,6 +10,10 @@ unless Spree::Order.instance_methods.include? :expire_stock_keepings!
     def stock_keep_payment_minutes!
       stock_keeper_expires_at! 10.minutes.from_now
     end
+
+    def stock_keepings_expired?
+      stock_keeper_expires_at < Time.now
+    end
   
     private
   
