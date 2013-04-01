@@ -3,3 +3,6 @@
 
 en:
   stock_keeper_reservation_minutes: "Temporary stock reservation (in minutes)"
+  stock_keeper_minutes: "minutes"
+  stock_keeper_seconds: "seconds"
+  stock_keeper_edit_order_time_left: "Will expire in %{time_amount} %{time_unit}"

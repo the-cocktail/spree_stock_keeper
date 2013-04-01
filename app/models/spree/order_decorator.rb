@@ -12,7 +12,15 @@ unless Spree::Order.instance_methods.include? :expire_stock_keepings!
     end
 
     def stock_keepings_expired?
-      stock_keeper_expires_at < Time.now
+      !stock_keeper_expires_at.nil? and (stock_keeper_expires_at < Time.now)
+    end
+
+    def stock_keepings_expires_in_minutes
+      stock_keeper_expires_at && (stock_keepings_expires_in_seconds / 60.to_f).to_i
+    end
+
+    def stock_keepings_expires_in_seconds
+      stock_keeper_expires_at && (stock_keeper_expires_at - Time.now).to_i
     end
   
     private
