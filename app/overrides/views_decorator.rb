@@ -7,6 +7,14 @@ Deface::Override.new(
   :disabled => false)
 
 Deface::Override.new(
+  :virtual_path => "spree/layouts/spree_application",
+  :name => "spree_application_layout_stock_keeper_seconds",
+  :set_attributes => "[data-hook='body']",
+  :attributes => {:'data-stock_keepings_expires_in_seconds' => "<%= current_order.stock_keepings_expires_in_seconds %>"},
+  :original => '77e1d75fe67e948d99deb620579ffaf2ac5f511f',
+  :disabled => false)
+
+Deface::Override.new(
   :virtual_path => "spree/orders/edit",
   :name => "spree_orders_edit_for_stock_keeper",
   :insert_before => "[data-hook='outside_cart_form']",
@@ -19,6 +27,6 @@ Deface::Override.new(
   :name => "spree_nav_bar_cart_for_stock_keeper",
   :insert_bottom => "#link-to-cart[data-hook]",
   :text => %!<% unless @order %><span class="stock_keeper_cart_form_expiration_info"><%= stock_keeper_remaining_time %></span><% end %>!,
-  :original => '0b575846dafd63ea5909a1',
+  :original => '0d843946b3a53643c5a7da90a3a21610208db866',
   :disabled => false)
   
