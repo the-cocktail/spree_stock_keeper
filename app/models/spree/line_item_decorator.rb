@@ -21,10 +21,16 @@ Spree::LineItem.class_eval do
   private
     def set_stock_keeper_expires_at
       if self.stock_keeper_expires_at.blank? or self.order_id_changed?
-        if order.stock_keeper_expires_at.blank?
-          order.update_column :stock_keeper_expires_at, Spree::StockKeeper.expires_at
+        expires_at = [
+          stock_keeper_expires_at,
+          order.stock_keeper_expires_at,
+          Spree::StockKeeper.expires_at
+        ].compact.min
+        if order.stock_keeper_expires_at.blank? or order.stock_keeper_expires_at != expires_at
+          order.update_column :stock_keeper_expires_at, expires_at
         end
-        self.stock_keeper_expires_at = order.stock_keeper_expires_at
+        self.stock_keeper_expires_at = expires_at
       end
     end
+
 end
