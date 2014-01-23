@@ -10,7 +10,7 @@ Deface::Override.new(
   :virtual_path => "spree/layouts/spree_application",
   :name => "spree_application_layout_stock_keeper_seconds",
   :set_attributes => "[data-hook='body']",
-  :attributes => {:'data-stock_keepings_expires_in_seconds' => "<%= current_order.stock_keepings_expires_in_seconds %>"},
+  :attributes => {:'data-stock_keepings_expires_in_seconds' => "<%= current_order ? current_order.stock_keepings_expires_in_seconds : '' %>"},
   :original => '77e1d75fe67e948d99deb620579ffaf2ac5f511f',
   :disabled => false)
 
