@@ -4,6 +4,10 @@ unless Spree::Order.instance_methods.include? :expire_stock_keepings!
     state_machine.before_transition :to => :payment, :do => :stock_keep_payment_minutes!
     state_machine.before_transition :to => :complete, :do => :expire_stock_keepings!
   
+    def self.incomplete
+      where("completed_at is null and stock_keeper_expires_at > ?", Time.now)
+    end
+
     def expire_stock_keepings!
       stock_keeper_expires_at! Time.now
     end
