@@ -4,7 +4,10 @@ Spree::BaseController.class_eval do
   def seek_and_destroy_expired_stock_keepings
     if self.respond_to? :current_order
       co = current_order(true)
-      current_order.destroy if co.stock_keepings_expired? and co.payments.blank?
+      if co.stock_keepings_expired? and co.payments.blank?
+        current_order.destroy 
+        @current_order = nil
+      end
     end
   end
 end
